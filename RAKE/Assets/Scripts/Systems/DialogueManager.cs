@@ -11,6 +11,9 @@ public class DialogueManager : MonoBehaviour
     private GameObject panel;
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private AudioSource audio;
+    private float minSound = 0, maxSound = 0, soundVol = 0;
 
 
     private Queue<string> sentences;
@@ -20,8 +23,13 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-    public void StartDialogue(Dialogue dialogue) 
+    public void StartDialogue(Dialogue dialogue, AudioClip npcVoice, float min, float max, float vol) 
     {
+        minSound = min;
+        maxSound = max;
+        soundVol = vol;
+
+        audio.clip = npcVoice;
         sentences.Clear();
         nameText.text = dialogue.name;
 
@@ -53,11 +61,18 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TypeSentence(string sentence) 
     {
+        int i = 0;
+        audio.volume = soundVol;
         dialogue.text = "";
         foreach (char letter in sentence.ToCharArray()) 
         {
+            i++;
+            audio.pitch = Random.Range(minSound, maxSound);
+            if(i % 3 == 0)
+            audio.Play();
             dialogue.text += letter;
             yield return new WaitForSeconds(0.03f);
         }
+        yield return new WaitForSeconds(0.3f);
     }
 }

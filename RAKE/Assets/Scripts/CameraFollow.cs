@@ -8,9 +8,9 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3 cmOffset;
 
-    [Range(0.001f, 1.0f)]
     public float smoothness = 0.5f;
 
+    public bool isCloud = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +20,11 @@ public class CameraFollow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 newPos = PlayerrTransform.position + cmOffset;
+        if (PlayerrTransform.position.x > -10 || isCloud)
+        {
+            Vector3 newPos = PlayerrTransform.position + cmOffset;
 
-        transform.position = Vector3.Slerp(transform.position, newPos, smoothness);
+            transform.position = Vector3.Slerp(transform.position, newPos, smoothness);
+        }
     }
 }

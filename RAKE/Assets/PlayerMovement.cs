@@ -10,31 +10,127 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
 
     [SerializeField]
-    private float speed = 20f;
+    private float speed = 20f, health = 100f;
 
-    float horizontalDirection = 0f;
+    [SerializeField]
+    private GameObject dialoguePanel;
 
-    bool jump = false, crouch = false;
+    [SerializeField] AudioSource woosh, sword, hurt;
+
+    float horizontalDirection = 0f, lastDirection = 0f, timer = 0, maxTime = 1.5f;
+
+    bool jump = false, crouch = false, turn = false;
+    public bool fallen = false;
 
     private void Update()
     {
-        horizontalDirection = Input.GetAxisRaw("Horizontal") * speed;
-        animator.SetFloat("Speed", Mathf.Abs(horizontalDirection));
+        if (!fallen && !animator.GetBool("GetHit") && dialoguePanel.activeInHierarchy == false)
+        {
+            if (Input.GetMouseButtonDown(0) && !animator.GetBool("IsCrouching") && !animator.GetBool("IsTurnning")
+                && !animator.GetBool("IsAttacking") && dialoguePanel.activeInHierarchy == false)
+            {
+                horizontalDirection = 0;
+                int rand = Random.Range(0, 2);
+                animator.SetBool("IsAttacking", true);
+               // sword.pitch;
+                sword.Play();
+                switch (rand)
+                {
+                    case 0:
+                        animator.SetBool("FirstAttack", true);
+                        break;
+                    case 1:
+                        animator.SetBool("SecondAttack", true);
+                        break;
+                }
 
-        if (Input.GetButtonDown("Jump"))
-            jump = true;
+            }
 
-        if (Input.GetButtonDown("Crouch"))
-            crouch = true;
-        else if (Input.GetButtonUp("Crouch"))
-            crouch = false;
+            if (!animator.GetBool("IsAttacking"))
+            {
+                horizontalDirection = Input.GetAxisRaw("Horizontal") * speed;
+                animator.SetFloat("Speed", Mathf.Abs(horizontalDirection));
+                if (horizontalDirection < 0 && !turn)
+                {
+                    animator.SetBool("IsTurnning", true);
+                    turn = true;
+                }
+                else if (turn && horizontalDirection > 0)
+                {
+                    animator.SetBool("IsTurnning", true);
+                    turn = false;
+                }
+            }
 
+
+
+
+            if (Input.GetButtonDown("Jump") && !animator.GetBool("IsCrouching"))
+            {
+                woosh.Play();
+                jump = true;
+                animator.SetBool("IsRolling", true);
+            }
+
+            if (Input.GetButtonDown("Crouch"))
+                crouch = true;
+            else if (Input.GetButtonUp("Crouch"))
+                crouch = false;
+
+            lastDirection = horizontalDirection;
+        }
+        else 
+        {
+            animator.SetBool("Fall", fallen);
+            timer += Time.deltaTime;
+            if (timer > maxTime && health > 0)
+            {
+                fallen = false;
+                animator.SetBool("Fall", fallen);
+                timer = 0;
+            }
+        }
            
     }
     private void FixedUpdate()
     {
-        controller2D.Move(horizontalDirection * Time.fixedDeltaTime, crouch, jump);
-        jump = false;
+        if (health > 0 )
+        {
+            if (dialoguePanel.activeInHierarchy == true) { horizontalDirection = 0; animator.SetFloat("Speed", 0); }
+            controller2D.Move(horizontalDirection * Time.fixedDeltaTime, crouch, jump);
+            jump = false;
+        }
+        else 
+        {
+            animator.SetBool("Fall", true);
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        }
     }
+
+    public void OnLanding() 
+    {
+        animator.SetBool("IsRolling", false);
+    }
+
+    public void OnCrouching(bool isCrouching) 
+    {
+        animator.SetBool("IsCrouching", isCrouching);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (health > 0)
+        {
+            if (collision.gameObject.CompareTag("EnemyHit") && !animator.GetBool("Attack") && !animator.GetBool("IsRolling"))
+            {
+                animator.SetBool("GetHit", true);
+                hurt.Play();
+                health -= 20;
+            }
+        }
+        
+    }
+
+
 
 }
