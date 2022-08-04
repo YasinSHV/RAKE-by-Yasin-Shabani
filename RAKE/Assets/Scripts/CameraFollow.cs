@@ -12,6 +12,9 @@ public class CameraFollow : MonoBehaviour
 
     public bool isCloud = false;
 
+    [SerializeField]
+    private GameObject camHolder;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +23,31 @@ public class CameraFollow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (PlayerrTransform.position.x > -10 || isCloud)
+        if ((PlayerrTransform.position.x > -10 && PlayerrTransform.position.x < 2.5) || isCloud)
         {
             Vector3 newPos = PlayerrTransform.position + cmOffset;
 
             transform.position = Vector3.Slerp(transform.position, newPos, smoothness);
         }
+    }
+
+    public IEnumerator Shake(float duration, float magnitude)
+    {
+        Vector3 origin = camHolder.transform.localPosition;
+
+        float elapsed = 0.0f;
+
+        while (elapsed < duration)
+        {
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+
+            camHolder.transform.localPosition = new Vector3(x, y, origin.z);
+
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+        camHolder.transform.localPosition = origin;
     }
 }

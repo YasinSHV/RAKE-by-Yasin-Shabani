@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
 {
+
+    Collider2D[] inRadius = null;
+    [SerializeField] private float explosionForceMulti = 5;
+    [SerializeField] private float explosionRadius = 5;
+    [SerializeField] AudioSource explode = null;
+
     public Animator playerAnimator;
 
     [SerializeField]
@@ -50,6 +56,40 @@ public class AnimationManager : MonoBehaviour
     {
         enemySound.pitch = Random.Range(1.18f, 1.3f);
         enemySound.Play();
+    }
+
+    public void EndOpen() 
+    {
+        playerAnimator.SetBool("Open", false);
+    }
+
+    void Explosion()
+    {
+        explode.Play();
+        inRadius = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+
+        foreach (Collider2D o in inRadius)
+        {
+            Rigidbody2D o_rb = o.GetComponent<Rigidbody2D>();
+            if (o_rb != null)
+            {
+                Vector2 distance = o.transform.position - transform.position;
+
+                if (o.tag == "Player")
+                {
+                    
+                    o.GetComponent<PlayerMovement>().fallen = true;
+
+                    
+
+                    if (distance.magnitude > 0)
+                    {
+                        float explosionForce = explosionForceMulti;
+                        o_rb.AddForce(distance * explosionForce);
+                    }
+                }
+            }
+        }
     }
 
 }

@@ -1,29 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller2D;
 
+    private Image healthBar;
+
     [SerializeField]
     private Animator animator;
 
     [SerializeField]
-    private float speed = 20f, health = 100f;
+    private float speed = 20f, maxHealth = 100f;
+
+    public float damage = 20;
 
     [SerializeField]
-    private GameObject dialoguePanel;
+    private GameObject dialoguePanel, hpBar;
 
     [SerializeField] AudioSource woosh, sword, hurt;
 
-    float horizontalDirection = 0f, lastDirection = 0f, timer = 0, maxTime = 1.5f;
+    float horizontalDirection = 0f, lastDirection = 0f, timer = 0, maxTime = 1.5f, currentHealth;
 
     bool jump = false, crouch = false, turn = false;
     public bool fallen = false;
 
+    private void Awake()
+    {
+        hpBar.transform.localScale = new Vector3(PlayerPrefs.GetFloat("Bar"), 3.3f);
+        damage = PlayerPrefs.GetInt("Str");
+        maxHealth = PlayerPrefs.GetInt("Hp");
+        currentHealth = maxHealth;
+        healthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Image>();
+    }
+
     private void Update()
     {
+        healthBar.fillAmount = currentHealth / maxHealth;
         if (!fallen && !animator.GetBool("GetHit") && dialoguePanel.activeInHierarchy == false)
         {
             if (Input.GetMouseButtonDown(0) && !animator.GetBool("IsCrouching") && !animator.GetBool("IsTurnning")
@@ -83,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("Fall", fallen);
             timer += Time.deltaTime;
-            if (timer > maxTime && health > 0)
+            if (timer > maxTime && maxHealth > 0)
             {
                 fallen = false;
                 animator.SetBool("Fall", fallen);
@@ -94,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (health > 0 )
+        if (currentHealth > 0 )
         {
             if (dialoguePanel.activeInHierarchy == true) { horizontalDirection = 0; animator.SetFloat("Speed", 0); }
             controller2D.Move(horizontalDirection * Time.fixedDeltaTime, crouch, jump);
@@ -119,13 +134,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (health > 0)
+        if (currentHealth > 0)
         {
-            if (collision.gameObject.CompareTag("EnemyHit") && !animator.GetBool("Attack") && !animator.GetBool("IsRolling"))
+            if (collision.gameObject.CompareTag("EnemyHit") && !animator.GetBool("IsAttacking") && !animator.GetBool("IsRolling"))
             {
+                currentHealth -= collision.GetComponent<HitBox>().hitBoxDamage;
                 animator.SetBool("GetHit", true);
                 hurt.Play();
-                health -= 20;
             }
         }
         

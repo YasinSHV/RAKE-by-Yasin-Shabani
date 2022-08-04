@@ -8,6 +8,10 @@ TagManager:
   - EnemyHit
   - Tower
   - PlayerAudio
+  - Mushroom
+  - HealthBar
+  - Door
+  - Camera
   layers:
   - Default
   - TransparentFX
@@ -17,7 +21,7 @@ TagManager:
   - UI
   - Player
   - Golem
-  - 
+  - Mushroom
   - 
   - 
   - 

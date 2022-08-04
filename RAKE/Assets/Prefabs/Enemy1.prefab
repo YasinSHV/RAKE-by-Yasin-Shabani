@@ -5068,7 +5068,7 @@ GameObject:
   - component: {fileID: 2640051655812882666}
   m_Layer: 8
   m_Name: Enemy1
-  m_TagString: Untagged
+  m_TagString: Mushroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5197,7 +5197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07791789566c4c74eb1407e329b06286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.5
   range: 2
   maxHealth: 60
   attackCoolDown: 0.7
@@ -5232,6 +5232,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94ab636e9ef01b4eb07053465a27611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionForceMulti: 5
+  explosionRadius: 5
+  explode: {fileID: 0}
   playerAnimator: {fileID: 2640051655812882659}
   enemySound: {fileID: 0}
 --- !u!1 &2640051656270876694
@@ -5320,6 +5323,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2640051656283235322}
   - component: {fileID: 2640051656283235323}
+  - component: {fileID: 1065826452287985555}
   m_Layer: 8
   m_Name: enemyHitBox
   m_TagString: EnemyHit
@@ -5368,3 +5372,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1065826452287985555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640051656283235321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e65aad75f785c54db6f0d776a8b0915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBoxDamage: 20
