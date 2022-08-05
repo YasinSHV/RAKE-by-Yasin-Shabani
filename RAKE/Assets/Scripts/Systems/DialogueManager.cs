@@ -12,7 +12,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     private Animator animator;
     [SerializeField]
-    private AudioSource audio;
+    private AudioSource audios;
     private float minSound = 0, maxSound = 0, soundVol = 0;
 
 
@@ -29,7 +29,7 @@ public class DialogueManager : MonoBehaviour
         maxSound = max;
         soundVol = vol;
 
-        audio.clip = npcVoice;
+        audios.clip = npcVoice;
         sentences.Clear();
         nameText.text = dialogue.name;
 
@@ -62,14 +62,14 @@ public class DialogueManager : MonoBehaviour
     IEnumerator TypeSentence(string sentence) 
     {
         int i = 0;
-        audio.volume = soundVol;
+        audios.volume = soundVol;
         dialogue.text = "";
         foreach (char letter in sentence.ToCharArray()) 
         {
             i++;
-            audio.pitch = Random.Range(minSound, maxSound);
+            audios.pitch = Random.Range(minSound, maxSound);
             if(i % 3 == 0)
-            audio.Play();
+            audios.Play();
             dialogue.text += letter;
             yield return new WaitForSeconds(0.03f);
         }

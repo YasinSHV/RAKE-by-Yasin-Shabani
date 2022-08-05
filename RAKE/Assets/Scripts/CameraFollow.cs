@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3 cmOffset;
 
-    public float smoothness = 0.5f;
+    public float smoothness = 0.5f, borderLeft = -10, borderRight = 2.5f;
 
     public bool isCloud = false;
 
@@ -23,7 +23,7 @@ public class CameraFollow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((PlayerrTransform.position.x > -10 && PlayerrTransform.position.x < 2.5) || isCloud)
+        if ((PlayerrTransform.position.x > borderLeft && PlayerrTransform.position.x < borderRight) || isCloud)
         {
             Vector3 newPos = PlayerrTransform.position + cmOffset;
 

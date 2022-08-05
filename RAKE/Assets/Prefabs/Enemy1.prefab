@@ -5081,7 +5081,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2640051655812882657}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.5, y: -3.73, z: 0}
+  m_LocalPosition: {x: 0, y: -3.73, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5197,9 +5197,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07791789566c4c74eb1407e329b06286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
-  range: 2
-  maxHealth: 60
+  speed: 0.7
+  range: 1.7
+  maxHealth: 50
   attackCoolDown: 0.7
   healthBar: {fileID: 2640051656270876695}
   particle: {fileID: 2640051655464466475}
@@ -5237,6 +5237,7 @@ MonoBehaviour:
   explode: {fileID: 0}
   playerAnimator: {fileID: 2640051655812882659}
   enemySound: {fileID: 0}
+  blood: 75
 --- !u!1 &2640051656270876694
 GameObject:
   m_ObjectHideFlags: 0

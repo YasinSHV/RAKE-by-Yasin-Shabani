@@ -8,7 +8,7 @@ public class Parallax : MonoBehaviour
     [SerializeField]
     private float speed;
     [SerializeField]
-    private GameObject camera;
+    private GameObject cam;
 
 
     private void Start()
@@ -18,7 +18,7 @@ public class Parallax : MonoBehaviour
 
     private void Update()
     {
-        float distance = camera.transform.position.x * speed;
+        float distance = cam.transform.position.x * speed;
         transform.position = new Vector3(startPosX - distance, transform.position.y, transform.position.z);
     }
 }
