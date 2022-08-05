@@ -61,6 +61,7 @@ public class BossScript : MonoBehaviour
         {
             animator.SetBool("IsDead", true);
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            PlayerPrefs.SetInt("GameWon", 1);
         }
 
 
@@ -135,7 +136,7 @@ public class BossScript : MonoBehaviour
                 if (rand != 4)
                 {
                     animator.SetBool("GetHit", true);
-                    currentHealth -= player.GetComponent<PlayerMovement>().damage;
+                    currentHealth -= PlayerPrefs.GetInt("Str");
                     particle.GetComponent<ParticleSystem>().Play();
                     audioSource.pitch = Random.Range(1.7f, 2f);
                     audioSource.Play();

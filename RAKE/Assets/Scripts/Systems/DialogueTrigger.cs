@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public Dialogue dialogue;
+    public Dialogue[] dialogue;
 
     private Transform player;
 
@@ -15,10 +15,17 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField]
     private float minSound = 0, maxSound = 0, vol = 0;
 
-    public void TriggerDialogue() => FindObjectOfType<DialogueManager>().StartDialogue(dialogue, kingSound,minSound,maxSound,vol);
+    public void TriggerDialogue() => FindObjectOfType<DialogueManager>().StartDialogue(dialogue[PlayerPrefs.GetInt("DNumb")], kingSound,minSound,maxSound,vol);
 
     private void Awake()
     {
+        if (PlayerPrefs.GetInt("DNumb") == 1)
+        {
+            if (PlayerPrefs.GetInt("Blood") > 700)
+            {
+                PlayerPrefs.SetInt("DNumb", PlayerPrefs.GetInt("DNumb") + 1);
+            }
+        }
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
     private void Update()

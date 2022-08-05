@@ -15,10 +15,13 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        timer -= Time.deltaTime;
-        text.text = timer.ToString("f2");
-        if (timer < 0)
-            volume.SetActive(true);
+        if (PlayerPrefs.GetInt("GameWon") == 0)
+        {
+            timer -= Time.deltaTime;
+            text.text = timer.ToString("f2");
+            if (timer < 0)
+                volume.SetActive(true);
+        }
 
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class HubManager : MonoBehaviour
 {
-    public GameObject fadeOut;
+    public GameObject fadeOut, arrow;
     private Transform player, cam;
 
     private void Start()
@@ -15,6 +15,9 @@ public class HubManager : MonoBehaviour
     }
     void Update()
     {
+        if (PlayerPrefs.GetInt("DNumb") >= 1)
+            arrow.SetActive(true);
+
         if (Input.GetKeyDown(KeyCode.Escape))
             SceneManager.LoadScene(0);
         if (cam.position.x < 10.9 && cam.position.x > 10.2 )

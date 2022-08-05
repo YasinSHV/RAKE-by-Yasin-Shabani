@@ -43,6 +43,7 @@ public class OpenDoor : MonoBehaviour
                 {
                     if (PlayerPrefs.GetInt("Blood") >= 5000)
                     {
+                        isOpen = true;
                         PlayerPrefs.SetInt("Door", 1);
                         cam.GetComponent<CameraFollow>().StartCoroutine(cam.GetComponent<CameraFollow>().Shake(2f, 0.034f));
                         isOpening = true;

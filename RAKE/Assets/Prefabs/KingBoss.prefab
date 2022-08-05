@@ -127,15 +127,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39444c58a6cc62e4688393f44100e70a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.3
-  range: 4
-  maxHealth: 700
-  attackCoolDown: 1.5
+  speed: 0.35
+  range: 4.5
+  maxHealth: 900
+  attackCoolDown: 1.7
   healthBar: {fileID: 3026465501854510157}
   particle: {fileID: 3026465501861245087}
   audioSource: {fileID: 3026465501725508569}
-  borderNegative: -10
-  borderPositive: 10
+  borderNegative: -28.5
+  borderPositive: 26.5
 --- !u!50 &3026465501052607113
 Rigidbody2D:
   serializedVersion: 4

@@ -112,7 +112,7 @@ public class Enemy : MonoBehaviour
             if (collision.gameObject.CompareTag("HitBox") && !animator.GetBool("Attack"))
             {
                 animator.SetBool("GetHit", true);
-                currentHealth -= player.GetComponent<PlayerMovement>().damage;
+                currentHealth -= PlayerPrefs.GetInt("Str");
                 particle.GetComponent<ParticleSystem>().Play();
                 audioSource.pitch = Random.Range(1.7f, 2f);
                 audioSource.Play();

@@ -6481,11 +6481,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: Kombiz
-    sentences:
-    - Hello, Kambiz hastam......
-    - Gharere emrooz dastane inke chejori kyomars saram kolah gozasht ro tarif konm....
-    - yeki bood yeki nabood....
+  - name: 
+    sentences: []
+  - name: 
+    sentences: []
   dialogueButton: {fileID: 0}
   kingSound: {fileID: 0}
   minSound: 0
@@ -11981,20 +11980,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: Eve
+  - name: Eve
     sentences:
     - A Knight?
-    - With a cloud....
-    - It's been some time since i last seen one of your kind...
-    - 'You dont need to say anything...
-
-'
-    - 'I already know what you''re looking for.
-
-
-'
-    - There is a whole jungle with creatures Full of BLoOd behind you...
-    - You might want to take a look....
+    - With a Cloud........
+    - It's been some time since the last time i saw one of your kind....
+    - You don't need to  say anything i already know why you're here.
+    - There is a whole jungle FuLl oF BloOd behind you...
+    - You might want to take a look...
+  - name: Eve
+    sentences:
+    - You're not the first Knight with the curse of ETERNAL CLOUD
+    - Gather some Blood and we will talk again...
+  - name: Eve
+    sentences:
+    - I hope you know smithing...
+    - If you do you can use the Anvil...
+    - Maybe it'll ease your  journey.
+  - name: Eve
+    sentences:
+    - Behind that doors a king awaits....
+    - Named Eric
+    - Kill him and your curse will fall...
+  - name: Eve
+    sentences:
+    - Many Tried....
+    - And many Failed...
+    - Wich it will be in your case?
+  - name: Eve
+    sentences:
+    - Me?
+    - I'm here to guide..
+    - And for a Friend i will never abide
+  - name: Eve
+    sentences:
+    - Creatures with rotten minds....
+    - Are there in the forest.
+    - if the knight wish to Grind...
+  - name: Eve
+    sentences:
+    - Your time is short...
+    - Maybe it doesn't show now.
+    - But when you step over that door....
+  - name: Eve
+    sentences:
+    - Your time is short...
+    - Maybe it doesn't show now.
+    - But when you step over that door....
+  - name: Eve
+    sentences:
+    - BLOOD
+    - More
+    - BLOOD
+    - and flowers
+    - and beautiful trees............
   dialogueButton: {fileID: 1219110681}
   kingSound: {fileID: 8300000, guid: 54aafe72603b6c444b1597f8f135b32d, type: 3}
   minSound: 1.8
@@ -17555,6 +17594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeOut: {fileID: 1300815297}
+  arrow: {fileID: 1533838494}
 --- !u!4 &1429901777
 Transform:
   m_ObjectHideFlags: 0
@@ -18144,6 +18184,111 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531751209}
   m_CullTransparentMesh: 1
+--- !u!1 &1533838494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1533838497}
+  - component: {fileID: 1533838496}
+  - component: {fileID: 1533838495}
+  m_Layer: 0
+  m_Name: Sprite-0003
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!95 &1533838495
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533838494}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5ce1c488660f14041ab217bd738650c2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!212 &1533838496
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533838494}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: 96b5e9230af4e7348827e5db13da40b2, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1533838497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533838494}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.67, y: -3.73, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1535612964
 GameObject:
   m_ObjectHideFlags: 0

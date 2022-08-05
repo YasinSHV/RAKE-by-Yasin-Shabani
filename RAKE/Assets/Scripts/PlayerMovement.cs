@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public bool fallen = false;
 
     private void Start()
-    { 
+    {
         startSpeed = speed;
         hpBar.transform.localScale = new Vector3(PlayerPrefs.GetFloat("Bar"), 3.3f);
         damage = PlayerPrefs.GetInt("Str");

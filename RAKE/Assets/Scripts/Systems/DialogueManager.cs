@@ -56,6 +56,12 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue() 
     {
+        
+        if (PlayerPrefs.GetInt("DNumb") != 1)
+            PlayerPrefs.SetInt("DNumb", PlayerPrefs.GetInt("DNumb") + 1);
+        if(PlayerPrefs.GetInt("DNumb") > 2)
+            PlayerPrefs.SetInt("DNumb", Random.Range(3, 10));
+        
         panel.SetActive(false);
     }
 
